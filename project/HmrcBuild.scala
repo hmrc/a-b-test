@@ -25,7 +25,8 @@ object HmrcBuild extends Build {
   val appVersion = "0.0.1-SNAPSHOT"
 
   val appDependencies = Seq(
-    "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+    "org.scalatest" %% "scalatest" % "2.2.4" % "test",
+    "org.pegdown" % "pegdown" % "1.4.2" % "test"
   )
 
   lazy val `url-builder` = (project in file("."))

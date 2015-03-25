@@ -21,6 +21,11 @@ import org.scalatest.{WordSpec, Matchers}
 class CohortSpec extends WordSpec with Matchers {
 
   "Cohort calculator" should {
+    object AnotherCohort extends Cohort {
+      val id = 1
+      val name = "cohort"
+    }
+
     val id = "an id"
     val anotherId = "another"
     val differentId = 1234
@@ -28,23 +33,32 @@ class CohortSpec extends WordSpec with Matchers {
     val cohort = new Cohort() {}
     val anotherCohort = new Cohort() {}
 
-    import CohortCalculator._
-
-    "return None when no cohorts are supplied" in {
-        calculate(id, Set()) should be (None)
+    "throw exception when no cohorts are supplied" in new CohortCalculator[Cohort] {
+      val values = Set.empty[Cohort]
+      intercept[ArithmeticException] {
+        calculate(id)
+      }
      }
 
-     "return only available cohort when only one specified" in {
-       calculate(id, Set[Cohort](cohort)) should be (Some(cohort))
+     "return only available cohort when only one specified" in new CohortCalculator[Cohort] {
+       val values = Set[Cohort](cohort)
+       calculate(id) should be (cohort)
      }
 
-    "return matching cohort for given id" in {
-      calculate(id, Set[Cohort](cohort, anotherCohort)) should be (Some(cohort))
-      calculate(anotherId, Set[Cohort](cohort, anotherCohort)) should be (Some(anotherCohort))
+    "return matching cohort for given id" in new CohortCalculator[Cohort] {
+      val values = Set[Cohort](cohort, anotherCohort)
+      calculate(id) should be (cohort)
+      calculate(anotherId) should be (anotherCohort)
     }
 
-    "return matching cohort for an id of any type" in {
-      calculate(differentId, Set[Cohort](cohort)) should be (Some(cohort))
+    "return matching cohort for an id of any type" in new CohortCalculator[Cohort] {
+      val values = Set[Cohort](cohort)
+      calculate(differentId) should be (cohort)
+    }
+
+    "return matching typed cohort" in new CohortCalculator[AnotherCohort.type] {
+      val values = Set(AnotherCohort)
+      calculate(differentId).id should be (1)
     }
   }
 }

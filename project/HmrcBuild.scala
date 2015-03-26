@@ -22,7 +22,7 @@ object HmrcBuild extends Build {
   import uk.gov.hmrc.DefaultBuildSettings._
   import uk.gov.hmrc.{SbtBuildInfo, ShellPrompt}
 
-  val appVersion = "0.1.0"
+  val appVersion = "0.2.0-SNAPSHOT"
 
   val appDependencies = Seq(
     "org.scalatest" %% "scalatest" % "2.2.4" % "test",

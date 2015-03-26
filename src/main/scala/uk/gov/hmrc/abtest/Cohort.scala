@@ -21,5 +21,7 @@ trait Cohort
 trait CohortCalculator[C <: Cohort] {
   val values: Set[C]
 
-  def calculate[T](id: T): C = values.drop(math.abs(id.hashCode) % values.size).head
+  def calculate[T](id: T): C = withValues {values.drop(math.abs(id.hashCode) % values.size).head}
+
+  private def withValues(cohort: => C): C = if (values.isEmpty) throw new IllegalStateException else cohort
 }

@@ -16,10 +16,10 @@
 
 package uk.gov.hmrc.abtest
 
-trait Cohort
+class Cohorts[C <: Cohort](val first: C, val others: C*) {
+  val values = others.toSet + first
+}
 
-trait CohortCalculator[C <: Cohort] {
-  def cohorts: Cohorts[C]
-
-  def calculate[T](id: T): C = cohorts.values.drop(math.abs(id.hashCode) % cohorts.values.size).head
+object Cohorts {
+  def apply[C <: Cohort](first: C, others: C*): Cohorts[C] = new Cohorts(first, others :_*)
 }

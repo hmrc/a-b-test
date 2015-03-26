@@ -33,32 +33,25 @@ class CohortSpec extends WordSpec with Matchers {
     val cohort = new Cohort() {}
     val anotherCohort = new Cohort() {}
 
-    "throw exception when no cohorts are supplied" in new CohortCalculator[Cohort] {
-      val values = Set.empty[Cohort]
-      intercept[IllegalStateException] {
-        calculate(anId)
-      }
-     }
-
      "return only available cohort when only one specified" in new CohortCalculator[Cohort] {
-       val values = Set[Cohort](cohort)
+       val cohorts = Cohorts(cohort)
        calculate(anId) should be (cohort)
      }
 
     "return matching cohort for given id" in new CohortCalculator[Cohort] {
-      val values = Set[Cohort](cohort, anotherCohort)
+      val cohorts = Cohorts(cohort, anotherCohort)
       val firstCohort = calculate(anId)
       val secondCohort = calculate(anotherId)
-      values should contain allOf(firstCohort, secondCohort)
+      cohorts.values should contain allOf(firstCohort, secondCohort)
     }
 
     "return matching cohort for an id of any type" in new CohortCalculator[Cohort] {
-      val values = Set[Cohort](cohort)
+      val cohorts = Cohorts(cohort)
       calculate(stringId) should be (cohort)
     }
 
     "return matching typed cohort" in new CohortCalculator[AnotherCohort.type] {
-      val values = Set(AnotherCohort)
+      val cohorts = Cohorts(AnotherCohort)
       calculate(stringId).id should be (1)
     }
   }

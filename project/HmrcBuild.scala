@@ -29,7 +29,7 @@ object HmrcBuild extends Build {
     "org.pegdown" % "pegdown" % "1.4.2" % "test"
   )
 
-  lazy val `url-builder` = (project in file("."))
+  lazy val `a-b-test` = (project in file("."))
     .settings(version := appVersion)
     .settings(scalaSettings: _*)
     .settings(defaultSettings(): _*)
@@ -92,8 +92,8 @@ object POMMetadata {
           </licenses>
           <scm>
             <connection>scm:git@github.com:hmrc/a-b-test.git</connection>
-            <developerConnection>scm:git@github.com:hmrc/url-builder.git</developerConnection>
-            <url>git@github.com:hmrc/url-builder.git</url>
+            <developerConnection>scm:git@github.com:hmrc/a-b-test.git</developerConnection>
+            <url>git@github.com:hmrc/a-b-test.git</url>
           </scm>
           <developers>
             <developer>

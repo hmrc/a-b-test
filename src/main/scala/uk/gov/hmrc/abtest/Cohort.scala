@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.cohort
+package uk.gov.hmrc.abtest
 
 trait Cohort
 

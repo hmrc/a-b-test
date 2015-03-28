@@ -60,5 +60,13 @@ class CohortValuesTest extends WordSpec with Matchers with LoneElement {
 
       cohorts.values should contain allOf(cohort1, cohort2)
     }
+
+    "disable a cohort when config is omitted" in new WithApplication(FakeApplication(withGlobal = Some(new GlobalSettings {}))) with ConfiguredCohortValues[Cohort] {
+      def availableValues: List[Cohort] = List(cohort1, cohort2)
+
+      intercept[IllegalArgumentException] {
+        verifyConfiguration()
+      }
+    }
   }
 }

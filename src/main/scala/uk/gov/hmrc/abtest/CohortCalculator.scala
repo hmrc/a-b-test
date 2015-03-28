@@ -16,8 +16,8 @@
 
 package uk.gov.hmrc.abtest
 
-trait Cohort {
-  def name: String
+trait CohortCalculator[C <: Cohort] {
+  def cohorts: Cohorts[C]
 
-  override def toString = name
+  def calculate[T](id: T): C = cohorts.values.drop(math.abs(id.hashCode) % cohorts.values.size).head
 }

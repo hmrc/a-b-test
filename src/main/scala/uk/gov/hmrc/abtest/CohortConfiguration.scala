@@ -16,8 +16,12 @@
 
 package uk.gov.hmrc.abtest
 
-trait Cohort {
-  def name: String
+import play.api.Play
 
-  override def toString = name
+trait CohortConfiguration[C <: Cohort] {
+  self: CohortValues[C] =>
+
+  def isEnabled(cohort: C) = Play.current.configuration.getBoolean(s"abTesting.cohort.${cohort.toString}.enabled").getOrElse(false)
+
+  def verifyConfiguration(): Unit = enabledCohorts
 }

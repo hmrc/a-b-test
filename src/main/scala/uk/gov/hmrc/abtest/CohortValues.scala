@@ -16,8 +16,15 @@
 
 package uk.gov.hmrc.abtest
 
-trait Cohort {
-  def name: String
+trait CohortValues[C <: Cohort] {
+  def availableValues: List[C]
 
-  override def toString = name
+  def cohorts: Cohorts[C] = enabledCohorts
+
+  protected lazy val enabledCohorts: Cohorts[C] = {
+    val cohorts = availableValues.filter(isEnabled)
+    Cohorts(cohorts.headOption.getOrElse(throw new IllegalArgumentException("No cohorts are enabled")), cohorts.tail :_*)
+  }
+
+  def isEnabled(cohort: C): Boolean
 }

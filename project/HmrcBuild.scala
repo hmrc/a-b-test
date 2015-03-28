@@ -25,8 +25,11 @@ object HmrcBuild extends Build {
   val appVersion = "0.2.0-SNAPSHOT"
 
   val appDependencies = Seq(
-    "org.scalatest" %% "scalatest" % "2.2.4" % "test",
-    "org.pegdown" % "pegdown" % "1.4.2" % "test"
+    "com.typesafe.play" %% "play" % "2.3.8" % "optional",
+
+    "com.typesafe.play" %% "play-test" % "2.3.8" % "test",
+    "org.pegdown" % "pegdown" % "1.4.2" % "test",
+    "org.scalatest" %% "scalatest" % "2.2.4" % "test"
   )
 
   lazy val `a-b-test` = (project in file("."))

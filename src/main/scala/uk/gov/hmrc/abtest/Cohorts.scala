@@ -17,7 +17,7 @@
 package uk.gov.hmrc.abtest
 
 class Cohorts[C <: Cohort](val first: C, val others: C*) {
-  val values = others.toSet + first
+  val values = (first +: others).toSet
 }
 
 object Cohorts {

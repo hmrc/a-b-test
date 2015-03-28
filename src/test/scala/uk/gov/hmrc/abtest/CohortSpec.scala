@@ -30,8 +30,12 @@ class CohortSpec extends WordSpec with Matchers {
     val anotherId = anId + 1
     val stringId = "1234"
 
-    val cohort = new Cohort() {}
-    val anotherCohort = new Cohort() {}
+    val cohort = new Cohort() {
+      def name: String = "cohort"
+    }
+    val anotherCohort = new Cohort() {
+      def name: String = "anotherCohort"
+    }
 
      "return only available cohort when only one specified" in new CohortCalculator[Cohort] {
        val cohorts = Cohorts(cohort)

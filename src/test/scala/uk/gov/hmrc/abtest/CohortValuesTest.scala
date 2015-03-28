@@ -25,47 +25,56 @@ class CohortValuesTest extends WordSpec with Matchers with LoneElement {
   object cohort1 extends Cohort {
     override def name = "cohort1"
   }
+
   object cohort2 extends Cohort {
     override def name = "cohort2"
   }
 
   "Loading cohorts from configuration" should {
 
-    "throw an IllegalArgumentException when no cohorts are enabled" in new WithApplication(FakeApplication(withGlobal = Some(new GlobalSettings {}), additionalConfiguration = Map(
-      "abTesting.cohort.cohort1.enabled" -> false,
-      "abTesting.cohort.cohort2.enabled" -> false))) with ConfiguredCohortValues[Cohort] {
-      def availableValues: List[Cohort] = List(cohort1, cohort2)
+    "throw an IllegalArgumentException when no cohorts are enabled" in
+      new WithApplication(FakeApplication(withGlobal = Some(new GlobalSettings {}), additionalConfiguration = Map(
+        "abTesting.cohort.cohort1.enabled" -> false,
+        "abTesting.cohort.cohort2.enabled" -> false))) with ConfiguredCohortValues[Cohort] {
 
-      intercept[IllegalArgumentException] {
-        verifyConfiguration()
+        def availableValues: List[Cohort] = List(cohort1, cohort2)
+
+        intercept[IllegalArgumentException] {
+          verifyConfiguration()
+        }
       }
-    }
 
-    "default to the only configured cohort" in new WithApplication(FakeApplication(withGlobal = Some(new GlobalSettings {}), additionalConfiguration = Map(
-      "abTesting.cohort.cohort1.enabled" -> false,
-      "abTesting.cohort.cohort2.enabled" -> true))) with ConfiguredCohortValues[Cohort] {
-      def availableValues: List[Cohort] = List(cohort1, cohort2)
+    "default to the only configured cohort" in
+      new WithApplication(FakeApplication(withGlobal = Some(new GlobalSettings {}), additionalConfiguration = Map(
+        "abTesting.cohort.cohort1.enabled" -> false,
+        "abTesting.cohort.cohort2.enabled" -> true))) with ConfiguredCohortValues[Cohort] {
 
-      verifyConfiguration()
+        def availableValues: List[Cohort] = List(cohort1, cohort2)
 
-      cohorts.values should contain only cohort2
-    }
+        verifyConfiguration()
 
-    "load multiple cohorts" in new WithApplication(FakeApplication(withGlobal = Some(new GlobalSettings {}), additionalConfiguration = Map(
-      "abTesting.cohort.cohort1.enabled" -> true,
-      "abTesting.cohort.cohort2.enabled" -> true))) with ConfiguredCohortValues[Cohort] {
-      def availableValues: List[Cohort] = List(cohort1, cohort2)
+        cohorts.values should contain only cohort2
+      }
 
-      verifyConfiguration()
+    "load multiple cohorts" in
+      new WithApplication(FakeApplication(withGlobal = Some(new GlobalSettings {}), additionalConfiguration = Map(
+        "abTesting.cohort.cohort1.enabled" -> true,
+        "abTesting.cohort.cohort2.enabled" -> true))) with ConfiguredCohortValues[Cohort] {
 
-      cohorts.values should contain allOf(cohort1, cohort2)
-    }
+        def availableValues: List[Cohort] = List(cohort1, cohort2)
 
-    "disable a cohort by default/when config is omitted" in new WithApplication(FakeApplication(withGlobal = Some(new GlobalSettings {}), additionalConfiguration = Map(
-      "abTesting.cohort.cohort2.enabled" -> true))) with ConfiguredCohortValues[Cohort] {
-      def availableValues: List[Cohort] = List(cohort1, cohort2)
+        verifyConfiguration()
 
-      cohorts.values should contain only cohort2
-    }
+        cohorts.values should contain allOf(cohort1, cohort2)
+      }
+
+    "disable a cohort by default/when config is omitted" in
+      new WithApplication(FakeApplication(withGlobal = Some(new GlobalSettings {}), additionalConfiguration = Map(
+        "abTesting.cohort.cohort2.enabled" -> true))) with ConfiguredCohortValues[Cohort] {
+
+        def availableValues: List[Cohort] = List(cohort1, cohort2)
+
+        cohorts.values should contain only cohort2
+      }
   }
 }

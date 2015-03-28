@@ -20,7 +20,7 @@ import org.scalatest.{LoneElement, Matchers, WordSpec}
 import play.api.GlobalSettings
 import play.api.test.{FakeApplication, WithApplication}
 
-class CohortValuesTest extends WordSpec with Matchers with LoneElement {
+class ConfiguredCohortValuesTest extends WordSpec with Matchers with LoneElement {
 
   object cohort1 extends Cohort {
     override def name = "cohort1"

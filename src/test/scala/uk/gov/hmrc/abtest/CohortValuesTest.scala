@@ -31,7 +31,7 @@ class CohortValuesTest extends WordSpec with Matchers with LoneElement {
 
   "Loading cohorts from configuration" should {
 
-    "balk when no cohorts enabled" in new WithApplication(FakeApplication(withGlobal = Some(new GlobalSettings {}), additionalConfiguration = Map(
+    "throw an IllegalArgumentException when no cohorts are enabled" in new WithApplication(FakeApplication(withGlobal = Some(new GlobalSettings {}), additionalConfiguration = Map(
       "abTesting.cohort.cohort1.enabled" -> false,
       "abTesting.cohort.cohort2.enabled" -> false))) with ConfiguredCohortValues[Cohort] {
       def availableValues: List[Cohort] = List(cohort1, cohort2)

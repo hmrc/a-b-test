@@ -22,7 +22,7 @@ object HmrcBuild extends Build {
   import uk.gov.hmrc.DefaultBuildSettings._
   import uk.gov.hmrc.{SbtBuildInfo, ShellPrompt}
 
-  val appVersion = "0.2.0-SNAPSHOT"
+  val appVersion = "0.2.0"
 
   val appDependencies = Seq(
     "com.typesafe.play" %% "play" % "2.3.8" % "optional",
@@ -103,6 +103,21 @@ object POMMetadata {
               <id>diksta</id>
               <name>Rich Johnston</name>
               <url>http://www.equalexperts.com/</url>
+            </developer>
+            <developer>
+              <id>nfma</id>
+              <name>Nuno Marques</name>
+              <url>http://www.equalexperts.com/</url>
+            </developer>
+            <developer>
+              <id>timothygordon32</id>
+              <name>Tim Gordon</name>
+              <url>http://www.equalexperts.com/</url>
+            </developer>
+            <developer>
+              <id>howyp</id>
+              <name>Howy Perrin</name>
+              <url>http://www.zuhlke.co.uk/</url>
             </developer>
           </developers>
   }

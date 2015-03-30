@@ -27,6 +27,6 @@ Include the following dependency in your SBT build
 ```scala
 resolvers += Resolver.bintrayRepo("hmrc", "releases")
 
-libraryDependencies += "uk.gov.hmrc" %% "a-b-test" % "0.0.1"
+libraryDependencies += "uk.gov.hmrc" %% "a-b-test" % "0.2.0"
 ```
 

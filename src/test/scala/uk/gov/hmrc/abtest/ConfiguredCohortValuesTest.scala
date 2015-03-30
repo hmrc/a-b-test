@@ -39,9 +39,7 @@ class ConfiguredCohortValuesTest extends WordSpec with Matchers with LoneElement
 
         def availableValues: List[Cohort] = List(cohort1, cohort2)
 
-        intercept[IllegalArgumentException] {
-          verifyConfiguration()
-        }
+        an [IllegalArgumentException] should be thrownBy verifyConfiguration()
       }
 
     "default to the only configured cohort" in

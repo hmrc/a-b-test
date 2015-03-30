@@ -104,6 +104,21 @@ object POMMetadata {
               <name>Rich Johnston</name>
               <url>http://www.equalexperts.com/</url>
             </developer>
+            <developer>
+              <id>nfma</id>
+              <name>Nuno Marques</name>
+              <url>http://www.equalexperts.com/</url>
+            </developer>
+            <developer>
+              <id>timothygordon32</id>
+              <name>Tim Gordon</name>
+              <url>http://www.equalexperts.com/</url>
+            </developer>
+            <developer>
+              <id>howyp</id>
+              <name>Howy Perrin</name>
+              <url>http://www.zuhlke.co.uk/</url>
+            </developer>
           </developers>
   }
 }

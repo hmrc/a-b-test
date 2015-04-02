@@ -26,8 +26,6 @@ class CohortSpec extends WordSpec with Matchers {
       val name = "cohort"
     }
 
-    object RandomObject
-
     val anId = 1234
     val anotherId = anId + 1
     val stringId = "1234"
@@ -61,9 +59,10 @@ class CohortSpec extends WordSpec with Matchers {
       calculate(stringId).id should be (1)
     }
 
-    "return matching typed cohort using the RandomObject key type for calculation" in new CohortCalculator[RandomObject.type, AnotherCohort.type] {
+    "fail compilation if key type used for cohort calculation is different from the one specified during creation" in new CohortCalculator[String, AnotherCohort.type] {
       val cohorts = Cohorts(AnotherCohort)
-      calculate(RandomObject) should be (AnotherCohort)
+      val anIntId = 5;
+      "calculate(anIntId)" shouldNot compile
     }
   }
 }

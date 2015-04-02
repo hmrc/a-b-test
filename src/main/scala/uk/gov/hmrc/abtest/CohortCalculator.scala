@@ -16,8 +16,8 @@
 
 package uk.gov.hmrc.abtest
 
-trait CohortCalculator[C <: Cohort] {
+trait CohortCalculator[K, C <: Cohort] {
   def cohorts: Cohorts[C]
 
-  def calculate[T](id: T): C = cohorts.values.drop(math.abs(id.hashCode) % cohorts.values.size).head
+  def calculate(id: K): C = cohorts.values.drop(math.abs(id.hashCode) % cohorts.values.size).head
 }

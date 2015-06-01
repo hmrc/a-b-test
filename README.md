@@ -13,12 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
+
 A-B-Test
 ===========
 
 [![Build Status](https://travis-ci.org/hmrc/a-b-test.svg?branch=master)](https://travis-ci.org/hmrc/a-b-test) [ ![Download](https://api.bintray.com/packages/hmrc/releases/a-b-test/images/download.svg) ](https://bintray.com/hmrc/releases/a-b-test/_latestVersion)
 
-Micro-library to help with A-B-Testing. Chooses a cohort from a set of cohorts given an identifier
+Micro-library to help A/B Testing. Chooses a cohort from a set of cohorts given an identifier
 
 # Adding to your service
 

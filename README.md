@@ -19,7 +19,7 @@ A-B-Test
 
 [![Build Status](https://travis-ci.org/hmrc/a-b-test.svg?branch=master)](https://travis-ci.org/hmrc/a-b-test) [ ![Download](https://api.bintray.com/packages/hmrc/releases/a-b-test/images/download.svg) ](https://bintray.com/hmrc/releases/a-b-test/_latestVersion)
 
-Micro-library to help A/B testing. Chooses a cohort from a set of cohorts given an identifier.
+Micro-library to help A/B testing - chooses a cohort from a set of cohorts given an identifier.
 
 # Adding to your service
 

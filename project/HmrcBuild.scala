@@ -36,7 +36,6 @@ object HmrcBuild extends Build {
   lazy val `a-b-test` = (project in file("."))
     .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning)
     .settings(
-      targetJvm := "jvm-1.7",
       libraryDependencies ++= appDependencies,
       crossScalaVersions := Seq("2.11.6"),
       resolvers := Seq(

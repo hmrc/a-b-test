@@ -17,13 +17,14 @@
 import sbt.Keys._
 import sbt._
 import uk.gov.hmrc.SbtAutoBuildPlugin
-
+import uk.gov.hmrc.versioning.SbtGitVersioning
+import uk.gov.hmrc.SbtArtifactory
 
 object HmrcBuild extends Build {
   import uk.gov.hmrc.DefaultBuildSettings._
   import uk.gov.hmrc.versioning.SbtGitVersioning
   import uk.gov.hmrc.{SbtAutoBuildPlugin, SbtBuildInfo}
-
+  import uk.gov.hmrc.versioning.SbtGitVersioning.autoImport.majorVersion
 
   val appDependencies = Seq(
     "com.typesafe.play" %% "play" % "2.5.8" % "optional",
@@ -34,13 +35,14 @@ object HmrcBuild extends Build {
   )
 
   lazy val `a-b-test` = (project in file("."))
-    .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning)
+    .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning, SbtArtifactory)
+    .settings(majorVersion := 3)
     .settings(
       libraryDependencies ++= appDependencies,
-      crossScalaVersions := Seq("2.11.6"),
-      resolvers := Seq(
-        Resolver.bintrayRepo("hmrc", "releases"),
-        "typesafe-releases" at "http://repo.typesafe.com/typesafe/releases/"
-      )
+      crossScalaVersions := Seq("2.11.6")
+//      resolvers := Seq(
+//        Resolver.bintrayRepo("hmrc", "releases"),
+//        "typesafe-releases" at "http://repo.typesafe.com/typesafe/releases/"
+//      )
     )
 }

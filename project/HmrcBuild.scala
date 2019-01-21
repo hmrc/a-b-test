@@ -27,11 +27,11 @@ object HmrcBuild extends Build {
   import uk.gov.hmrc.versioning.SbtGitVersioning.autoImport.majorVersion
 
   val appDependencies = Seq(
-    "com.typesafe.play" %% "play" % "2.5.8" % "optional",
-    "com.typesafe.play" %% "play-test" % "2.5.8" % "test",
+    "com.typesafe.play" %% "play" % "2.5.19" % "optional",
+    "com.typesafe.play" %% "play-test" % "2.5.19" % "test",
     "org.scalatestplus.play"  %% "scalatestplus-play"       % "1.5.1"     % "test",
     "org.pegdown" % "pegdown" % "1.4.2" % "test",
-    "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+    "org.scalatest" %% "scalatest" % "2.2.6" % "test"
   )
 
   lazy val `a-b-test` = (project in file("."))

@@ -21,5 +21,5 @@ class Cohorts[C <: Cohort](val first: C, val others: C*) {
 }
 
 object Cohorts {
-  def apply[C <: Cohort](first: C, others: C*): Cohorts[C] = new Cohorts(first, others :_*)
+  def apply[C <: Cohort](first: C, others: C*): Cohorts[C] = new Cohorts(first, others: _*)
 }

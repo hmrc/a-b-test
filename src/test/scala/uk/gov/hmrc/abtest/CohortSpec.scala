@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.abtest
 
-import org.scalatest.{WordSpec, Matchers}
+import org.scalatest.{ Matchers, WordSpec }
 
 class CohortSpec extends WordSpec with Matchers {
 
@@ -37,29 +37,31 @@ class CohortSpec extends WordSpec with Matchers {
       def name: String = "anotherCohort"
     }
 
-     "return only available cohort when only one specified" in new CohortCalculator[Int, Cohort] {
-       val cohorts = Cohorts(cohort)
-       calculate(anId) should be (cohort)
-     }
+    "return only available cohort when only one specified" in new CohortCalculator[Int, Cohort] {
+      val cohorts = Cohorts(cohort)
+      calculate(anId) should be(cohort)
+    }
 
     "return matching cohort for given id" in new CohortCalculator[Int, Cohort] {
       val cohorts = Cohorts(cohort, anotherCohort)
       val firstCohort = calculate(anId)
       val secondCohort = calculate(anotherId)
-      cohorts.values should contain allOf(firstCohort, secondCohort)
+      cohorts.values should contain allOf (firstCohort, secondCohort)
     }
 
     "return matching cohort for an id of any type" in new CohortCalculator[String, Cohort] {
       val cohorts = Cohorts(cohort)
-      calculate(stringId) should be (cohort)
+      calculate(stringId) should be(cohort)
     }
 
     "return matching typed cohort" in new CohortCalculator[String, AnotherCohort.type] {
       val cohorts = Cohorts(AnotherCohort)
-      calculate(stringId).id should be (1)
+      calculate(stringId).id should be(1)
     }
 
-    "fail compilation if key type used for cohort calculation is different from the one specified during creation" in new CohortCalculator[String, AnotherCohort.type] {
+    "fail compilation if key type used for cohort calculation is different from the one specified during creation" in new CohortCalculator[
+      String,
+      AnotherCohort.type] {
       val cohorts = Cohorts(AnotherCohort)
       val anIntId = 5;
       "calculate(anIntId)" shouldNot compile

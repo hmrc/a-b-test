@@ -23,7 +23,7 @@ trait CohortValues[C <: Cohort] {
 
   protected lazy val enabledCohorts: Cohorts[C] = {
     val cohorts = availableValues.filter(isEnabled)
-    Cohorts(cohorts.headOption.getOrElse(throw new IllegalArgumentException("No cohorts are enabled")), cohorts.tail :_*)
+    Cohorts(cohorts.headOption.getOrElse(throw new IllegalArgumentException("No cohorts are enabled")), cohorts.tail: _*)
   }
 
   def isEnabled(cohort: C): Boolean

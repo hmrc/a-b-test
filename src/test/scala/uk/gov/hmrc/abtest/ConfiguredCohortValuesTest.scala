@@ -16,11 +16,10 @@
 
 package uk.gov.hmrc.abtest
 
-import org.scalatest.{LoneElement, Matchers, WordSpec}
+import org.scalatest.{ LoneElement, Matchers, WordSpec }
 import org.scalatestplus.play.OneServerPerSuite
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
-
 
 class NoneEnabledCohortValuesTest extends WordSpec with Matchers with LoneElement with OneServerPerSuite {
 
@@ -33,9 +32,7 @@ class NoneEnabledCohortValuesTest extends WordSpec with Matchers with LoneElemen
   }
 
   implicit override lazy val app: Application = new GuiceApplicationBuilder()
-    .configure(Map(
-        "abTesting.cohort.cohort1.enabled" -> false,
-        "abTesting.cohort.cohort2.enabled" -> false))
+    .configure(Map("abTesting.cohort.cohort1.enabled" -> false, "abTesting.cohort.cohort2.enabled" -> false))
     .build()
 
   "Loading cohorts from configuration" should {
@@ -60,9 +57,7 @@ class OneEnabledCohortValuesTest extends WordSpec with Matchers with LoneElement
   }
 
   implicit override lazy val app: Application = new GuiceApplicationBuilder()
-    .configure(Map(
-        "abTesting.cohort.cohort1.enabled" -> false,
-        "abTesting.cohort.cohort2.enabled" -> true))
+    .configure(Map("abTesting.cohort.cohort1.enabled" -> false, "abTesting.cohort.cohort2.enabled" -> true))
     .build()
 
   "Loading cohorts from configuration" should {
@@ -89,9 +84,7 @@ class BothEnabledCohortValuesTest extends WordSpec with Matchers with LoneElemen
   }
 
   implicit override lazy val app: Application = new GuiceApplicationBuilder()
-    .configure(Map(
-        "abTesting.cohort.cohort1.enabled" -> true,
-        "abTesting.cohort.cohort2.enabled" -> true))
+    .configure(Map("abTesting.cohort.cohort1.enabled" -> true, "abTesting.cohort.cohort2.enabled" -> true))
     .build()
 
   "Loading cohorts from configuration" should {
@@ -102,7 +95,7 @@ class BothEnabledCohortValuesTest extends WordSpec with Matchers with LoneElemen
 
         verifyConfiguration()
 
-        cohorts.values should contain allOf(cohort1, cohort2)
+        cohorts.values should contain allOf (cohort1, cohort2)
       }
   }
 }
@@ -117,8 +110,7 @@ class OnlyOneConfiguredAndEnabledCohortValuesTest extends WordSpec with Matchers
   }
 
   implicit override lazy val app: Application = new GuiceApplicationBuilder()
-    .configure(Map(
-        "abTesting.cohort.cohort2.enabled" -> true))
+    .configure(Map("abTesting.cohort.cohort2.enabled" -> true))
     .build()
 
   "Loading cohorts from configuration" should {

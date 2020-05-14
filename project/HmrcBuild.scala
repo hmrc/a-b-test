@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import com.lucidchart.sbt.scalafmt.ScalafmtCorePlugin.autoImport._
 import sbt.Keys._
 import sbt._
 import uk.gov.hmrc.SbtAutoBuildPlugin
